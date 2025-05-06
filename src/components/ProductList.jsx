@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
 import Sidebar from "./Sidebar";
 import { FiX, FiChevronDown } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const ProductList = ({ isLoggedIn, onSignInClick }) => {
-  const { isLoggedIn: authIsLoggedIn } = useAuth();
+const ProductList = () => {
+  const { isLoggedIn } = useAuth();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [filters, setFilters] = useState({});
@@ -174,15 +173,15 @@ const ProductList = ({ isLoggedIn, onSignInClick }) => {
                 <div className="relative aspect-square overflow-hidden">
                   <img
                     src={product.image}
-                    alt={product.name}
+                    alt={product.title}
                     className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-4">
                   <h3 className="text-lg font-semibold mb-2 line-clamp-2">
-                    {product.name}
+                    {product.title}
                   </h3>
-                  {authIsLoggedIn ? (
+                  {isLoggedIn ? (
                     <p className="text-xl font-bold text-gray-900">
                       ${product.price}
                     </p>
